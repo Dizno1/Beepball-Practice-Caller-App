@@ -84,6 +84,9 @@ const manifest = {"Nick": [{"callType": "1 fly", "leftFile": "audio/left/Nick_1_
 const pitcherFile = "audio/pitchers/Hunter_Set_Ready_Pitch_center.mp3";
 const ballSoundFile = "audio/sounds/Ball1.m4a";
 let currentAudio = null;
+const sequenceAudio = new Audio();
+sequenceAudio.preload = "auto";
+sequenceAudio.setAttribute("playsinline", "");
 let activeTimers = [];
 let lastCall = null;
 let isContinuous = false;
@@ -133,6 +136,8 @@ function stopCurrentAudio() {
         try { currentAudio.currentTime = 0; } catch (error) {}
         currentAudio = null;
     }
+    sequenceAudio.pause();
+    try { sequenceAudio.currentTime = 0; } catch (error) {}
 }
 
 function stopAll() {
@@ -143,11 +148,26 @@ function stopAll() {
     setStatus("Practice stopped.");
 }
 
-function unlockAudio() {
+async function unlockAudio() {
     unlockButton.setAttribute("aria-pressed", "true");
     unlockButton.textContent = "Audio Enabled";
-    setStatus("Audio enabled. Test the center beep, then the pitcher cadence.");
-    announceAfterSequence("Audio enabled.");
+    setStatus("Audio enabled. Preparing audio for mobile playback.");
+
+    try {
+        sequenceAudio.src = pitcherFile;
+        sequenceAudio.muted = true;
+        sequenceAudio.load();
+        await sequenceAudio.play();
+        sequenceAudio.pause();
+        sequenceAudio.currentTime = 0;
+        sequenceAudio.muted = false;
+        setStatus("Audio enabled. Test the center beep, then the pitcher cadence.");
+        announceAfterSequence("Audio enabled.");
+    } catch (error) {
+        sequenceAudio.muted = false;
+        setStatus("Audio enabled, but the browser may still require a direct button press before continuous practice works. Test the pitcher cadence first.");
+        announceAfterSequence("Audio enabled. Test the pitcher cadence before continuous practice.");
+    }
 }
 
 function playCenterBeep() {
@@ -170,30 +190,32 @@ function playCenterBeep() {
 
 function playAudioFile(src, label, quiet) {
     stopCurrentAudio();
-    const audio = new Audio(src);
+    const audio = sequenceAudio;
     currentAudio = audio;
     audio.preload = "auto";
+    audio.src = src;
+    audio.load();
 
     return new Promise((resolve) => {
         let done = false;
-        function finish() {
+        function finish(success) {
             if (done) { return; }
             done = true;
             if (currentAudio === audio) { currentAudio = null; }
-            resolve();
+            resolve(success);
         }
-        audio.addEventListener("ended", finish, { once: true });
+        audio.addEventListener("ended", () => finish(true), { once: true });
         audio.addEventListener("error", () => {
-            setStatus("Could not load " + label + ". Missing file: " + src);
-            finish();
+            setStatus("Could not load " + label + ". Missing file or unsupported file: " + src);
+            finish(false);
         }, { once: true });
         audio.play().then(() => {
             if (!quiet) {
                 setStatus("Playing " + label + ".");
             }
         }).catch((error) => {
-            setStatus("Chrome blocked audio or could not play " + label + ". Try the manual audio player. File: " + src);
-            finish();
+            setStatus("Chrome or mobile browser blocked audio, or could not play " + label + ". Press Enable Audio, then test the pitcher cadence. File: " + src);
+            finish(false);
         });
     });
 }
@@ -228,19 +250,22 @@ function chooseCall() {
 async function playSequence(call, token) {
     const includeBall = document.getElementById("includeBallSound").checked;
 
-    await playAudioFile(pitcherFile, "Hunter pitcher cadence", true);
-    if (token !== sequenceToken) { return; }
+    let ok = await playAudioFile(pitcherFile, "Hunter pitcher cadence", true);
+    if (!ok || token !== sequenceToken) { return false; }
 
     if (includeBall) {
         await new Promise((resolve) => rememberTimer(window.setTimeout(resolve, 120)));
-        if (token !== sequenceToken) { return; }
-        await playAudioFile(ballSoundFile, "trial ball sound", true);
-        if (token !== sequenceToken) { return; }
+        if (token !== sequenceToken) { return false; }
+        ok = await playAudioFile(ballSoundFile, "trial ball sound", true);
+        if (!ok || token !== sequenceToken) { return false; }
     }
 
     await new Promise((resolve) => rememberTimer(window.setTimeout(resolve, 120)));
-    if (token !== sequenceToken) { return; }
-    await playAudioFile(call.file, call.caller + " " + call.side + " " + call.callType, true);
+    if (token !== sequenceToken) { return false; }
+    ok = await playAudioFile(call.file, call.caller + " " + call.side + " " + call.callType, true);
+    if (!ok || token !== sequenceToken) { return false; }
+
+    return true;
 }
 
 async function runOne(continueAfter) {
@@ -251,8 +276,15 @@ async function runOne(continueAfter) {
     const call = chooseCall();
     lastCall = call;
     lastCallEl.textContent = "Last call: " + call.caller + " on the " + call.side + " side, " + call.callType + ".";
-    await playSequence(call, token);
+    const completed = await playSequence(call, token);
     if (token !== sequenceToken) { return; }
+    if (!completed) {
+        isContinuous = false;
+        const failed = "Sequence stopped because one of the audio files did not play.";
+        setStatus(failed);
+        announceAfterSequence(failed);
+        return;
+    }
     const summary = "Sequence complete. Last call was " + call.caller + " on the " + call.side + " side, " + call.callType + ".";
     setStatus(summary);
     announceAfterSequence(summary);
@@ -270,8 +302,14 @@ document.getElementById("repeatButton").addEventListener("click", async () => {
     isContinuous = false;
     sequenceToken += 1;
     const token = sequenceToken;
-    await playSequence(lastCall, token);
+    const completed = await playSequence(lastCall, token);
     if (token !== sequenceToken) { return; }
+    if (!completed) {
+        const failed = "Repeat stopped because one of the audio files did not play.";
+        setStatus(failed);
+        announceAfterSequence(failed);
+        return;
+    }
     const summary = "Repeat complete. Last call was " + lastCall.caller + " on the " + lastCall.side + " side, " + lastCall.callType + ".";
     setStatus(summary);
     announceAfterSequence(summary);
