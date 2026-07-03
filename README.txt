@@ -1,12 +1,11 @@
-Stereo Call Practice Field Test v5
+Beepball Practice Caller App
 
-Extract this ZIP first. Open index.html in Chrome.
+Current build notes:
+- The page title and main heading use Beepball Practice Caller App.
+- Audio starts from the normal practice and test buttons.
+- No manual audio player is shown on the page.
+- Pitcher cadence is selectable.
+- Last call is displayed after the call has played, not before.
 
-Changes in v5:
-- Keeps Nick on one side and Gina on the other using pre-panned audio.
-- Pitcher cadence can be changed from the Pitcher cadence combo box.
-- Screen reader live announcements are delayed until after a sequence finishes.
-- Use Enable Audio first, then Play One Practice Call.
-
-
-Version 6 adds Ball1.m4a as an optional trial ball sound between the selected pitcher cadence and the spotter call. Use the Include trial ball sound checkbox to turn it on or off.
+Testing:
+Extract the ZIP first. Open index.html in Chrome. Do not run the file from inside the ZIP preview.

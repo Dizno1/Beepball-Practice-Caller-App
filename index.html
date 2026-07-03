@@ -21,11 +21,10 @@
 <body>
 <main>
     <h1>Beepball Practice Caller App</h1>
-    <p>Field test build using pre-panned audio files, Hunter pitcher cadence, and an optional trial ball sound. Screen reader announcements are delayed until after each practice sequence so the audio call is not covered up.</p>
+    <p>Field test build using pre-panned audio files, selectable pitcher cadence, and an optional trial ball sound. Screen reader announcements and visible last-call results are delayed until after each practice sequence so the audio call is not covered up.</p>
 
     <section aria-labelledby="controls-heading">
         <h2 id="controls-heading">Practice Controls</h2>
-        <button type="button" id="unlockButton" aria-pressed="false">Enable Audio</button>
         <button type="button" id="playOneButton">Play One Practice Call</button>
         <button type="button" id="continuousButton">Start Continuous Practice</button>
         <button type="button" id="stopButton">Stop Practice</button>
@@ -51,6 +50,11 @@
         <h2 id="settings-heading">Settings</h2>
         <label for="practiceSpeed">Continuous practice speed</label>
         <select id="practiceSpeed"><option value="slow">Slow</option><option value="normal" selected>Normal</option><option value="fast">Fast</option></select>
+        <label for="pitcherSelect">Pitcher cadence</label>
+        <select id="pitcherSelect">
+            <option value="audio/pitchers/Philadelphia Pitcher - Tim Hibner.mp3" selected>Tim Hibner - Philadelphia Pitcher</option>
+            <option value="audio/pitchers/Philadelphia Pat Krause .m4a">Pat Krause - Philadelphia Pitcher</option>
+        </select>
         <label class="choice-label"><input type="checkbox" id="includeBallSound" checked> Include trial ball sound</label>
     </section>
 
@@ -61,13 +65,11 @@
         <button type="button" id="testRightButton">Test Right Caller</button>
         <button type="button" id="testPitcherButton">Test Pitcher Cadence</button>
         <button type="button" id="testBallButton">Test Trial Ball Sound</button>
-        <audio id="manualAudio" controls preload="none" src="audio/pitchers/Hunter_Set_Ready_Pitch_center.mp3">Your browser does not support audio.</audio>
-        <p class="note">The audio player above is a manual fallback. If no button audio works, press the audio player controls directly. If that still has no sound, the issue is outside the app code.</p>
     </section>
 
     <section aria-labelledby="status-heading">
         <h2 id="status-heading">Status</h2>
-        <p id="status" class="status-box">Ready. Press Enable Audio first.</p>
+        <p id="status" class="status-box">Ready. Press Play One Practice Call, Start Continuous Practice, or an audio test button.</p>
         <p id="lastCall" class="status-box">Last call: No call has played yet.</p>
         <p id="srAnnouncement" class="sr-only" role="status" aria-live="polite"></p>
     </section>
@@ -75,13 +77,13 @@
     <section aria-labelledby="notes-heading">
         <h2 id="notes-heading">JAWS Test Notes</h2>
         <p>Extract the ZIP first. Open the extracted index.html in Chrome. Do not run index.html from inside the ZIP preview.</p>
-        <p>Press Enable Audio. Then test center beep, pitcher cadence, trial ball sound, left caller, and right caller.</p>
+        <p>Test center beep, pitcher cadence, trial ball sound, left caller, and right caller. No separate audio toggle is needed.</p>
         <p>During a practice call, the app avoids live screen reader announcements until the pitcher cadence and spotter call are complete.</p>
     </section>
 </main>
 <script>
 const manifest = {"Nick": [{"callType": "1 fly", "leftFile": "audio/left/Nick_1_fly_left.mp3", "rightFile": "audio/right/Nick_1_fly_right.mp3"}, {"callType": "1 groaner", "leftFile": "audio/left/Nick_1_groaner_left.mp3", "rightFile": "audio/right/Nick_1_groaner_right.mp3"}, {"callType": "1 hard", "leftFile": "audio/left/Nick_1_hard_left.mp3", "rightFile": "audio/right/Nick_1_hard_right.mp3"}, {"callType": "1 normal", "leftFile": "audio/left/Nick_1_normal_left.mp3", "rightFile": "audio/right/Nick_1_normal_right.mp3"}, {"callType": "1 scoop", "leftFile": "audio/left/Nick_1_scoop_left.mp3", "rightFile": "audio/right/Nick_1_scoop_right.mp3"}, {"callType": "1 short", "leftFile": "audio/left/Nick_1_short_left.mp3", "rightFile": "audio/right/Nick_1_short_right.mp3"}, {"callType": "2 fly", "leftFile": "audio/left/Nick_2_fly_left.mp3", "rightFile": "audio/right/Nick_2_fly_right.mp3"}, {"callType": "2 hard", "leftFile": "audio/left/Nick_2_hard_left.mp3", "rightFile": "audio/right/Nick_2_hard_right.mp3"}, {"callType": "2 normal", "leftFile": "audio/left/Nick_2_normal_left.mp3", "rightFile": "audio/right/Nick_2_normal_right.mp3"}, {"callType": "2 scoop", "leftFile": "audio/left/Nick_2_scoop_left.mp3", "rightFile": "audio/right/Nick_2_scoop_right.mp3"}, {"callType": "2 short", "leftFile": "audio/left/Nick_2_short_left.mp3", "rightFile": "audio/right/Nick_2_short_right.mp3"}, {"callType": "3 fly", "leftFile": "audio/left/Nick_3_fly_left.mp3", "rightFile": "audio/right/Nick_3_fly_right.mp3"}, {"callType": "3 hard", "leftFile": "audio/left/Nick_3_hard_left.mp3", "rightFile": "audio/right/Nick_3_hard_right.mp3"}, {"callType": "3 normal", "leftFile": "audio/left/Nick_3_normal_left.mp3", "rightFile": "audio/right/Nick_3_normal_right.mp3"}, {"callType": "3 scoop", "leftFile": "audio/left/Nick_3_scoop_left.mp3", "rightFile": "audio/right/Nick_3_scoop_right.mp3"}, {"callType": "3 short", "leftFile": "audio/left/Nick_3_short_left.mp3", "rightFile": "audio/right/Nick_3_short_right.mp3"}, {"callType": "4 fly", "leftFile": "audio/left/Nick_4_fly_left.mp3", "rightFile": "audio/right/Nick_4_fly_right.mp3"}, {"callType": "4 hard", "leftFile": "audio/left/Nick_4_hard_left.mp3", "rightFile": "audio/right/Nick_4_hard_right.mp3"}, {"callType": "4 normal", "leftFile": "audio/left/Nick_4_normal_left.mp3", "rightFile": "audio/right/Nick_4_normal_right.mp3"}, {"callType": "4 scoop", "leftFile": "audio/left/Nick_4_scoop_left.mp3", "rightFile": "audio/right/Nick_4_scoop_right.mp3"}, {"callType": "4 short", "leftFile": "audio/left/Nick_4_short_left.mp3", "rightFile": "audio/right/Nick_4_short_right.mp3"}, {"callType": "5 fly", "leftFile": "audio/left/Nick_5_fly_left.mp3", "rightFile": "audio/right/Nick_5_fly_right.mp3"}, {"callType": "5 hard", "leftFile": "audio/left/Nick_5_hard_left.mp3", "rightFile": "audio/right/Nick_5_hard_right.mp3"}, {"callType": "5 normal", "leftFile": "audio/left/Nick_5_normal_left.mp3", "rightFile": "audio/right/Nick_5_normal_right.mp3"}, {"callType": "5 scoop", "leftFile": "audio/left/Nick_5_scoop_left.mp3", "rightFile": "audio/right/Nick_5_scoop_right.mp3"}, {"callType": "5 short", "leftFile": "audio/left/Nick_5_short_left.mp3", "rightFile": "audio/right/Nick_5_short_right.mp3"}, {"callType": "6 fly", "leftFile": "audio/left/Nick_6_fly_left.mp3", "rightFile": "audio/right/Nick_6_fly_right.mp3"}, {"callType": "6 hard", "leftFile": "audio/left/Nick_6_hard_left.mp3", "rightFile": "audio/right/Nick_6_hard_right.mp3"}, {"callType": "6 normal", "leftFile": "audio/left/Nick_6_normal_left.mp3", "rightFile": "audio/right/Nick_6_normal_right.mp3"}, {"callType": "6 scoop", "leftFile": "audio/left/Nick_6_scoop_left.mp3", "rightFile": "audio/right/Nick_6_scoop_right.mp3"}, {"callType": "6 short", "leftFile": "audio/left/Nick_6_short_left.mp3", "rightFile": "audio/right/Nick_6_short_right.mp3"}], "Gina": [{"callType": "fly ball 1", "leftFile": "audio/left/Gina_fly_ball_1_left.mp3", "rightFile": "audio/right/Gina_fly_ball_1_right.mp3"}, {"callType": "fly ball 2", "leftFile": "audio/left/Gina_fly_ball_2_left.mp3", "rightFile": "audio/right/Gina_fly_ball_2_right.mp3"}, {"callType": "fly ball 3", "leftFile": "audio/left/Gina_fly_ball_3_left.mp3", "rightFile": "audio/right/Gina_fly_ball_3_right.mp3"}, {"callType": "fly ball 4", "leftFile": "audio/left/Gina_fly_ball_4_left.mp3", "rightFile": "audio/right/Gina_fly_ball_4_right.mp3"}, {"callType": "fly ball 5", "leftFile": "audio/left/Gina_fly_ball_5_left.mp3", "rightFile": "audio/right/Gina_fly_ball_5_right.mp3"}, {"callType": "fly ball 6", "leftFile": "audio/left/Gina_fly_ball_6_left.mp3", "rightFile": "audio/right/Gina_fly_ball_6_right.mp3"}, {"callType": "groaner 1", "leftFile": "audio/left/Gina_groaner_1_left.mp3", "rightFile": "audio/right/Gina_groaner_1_right.mp3"}, {"callType": "hard 1", "leftFile": "audio/left/Gina_hard_1_left.mp3", "rightFile": "audio/right/Gina_hard_1_right.mp3"}, {"callType": "hard 3", "leftFile": "audio/left/Gina_hard_3_left.mp3", "rightFile": "audio/right/Gina_hard_3_right.mp3"}, {"callType": "hard 4", "leftFile": "audio/left/Gina_hard_4_left.mp3", "rightFile": "audio/right/Gina_hard_4_right.mp3"}, {"callType": "hard 5", "leftFile": "audio/left/Gina_hard_5_left.mp3", "rightFile": "audio/right/Gina_hard_5_right.mp3"}, {"callType": "hard 6", "leftFile": "audio/left/Gina_hard_6_left.mp3", "rightFile": "audio/right/Gina_hard_6_right.mp3"}, {"callType": "regular 1", "leftFile": "audio/left/Gina_regular_1_left.mp3", "rightFile": "audio/right/Gina_regular_1_right.mp3"}, {"callType": "regular 2", "leftFile": "audio/left/Gina_regular_2_left.mp3", "rightFile": "audio/right/Gina_regular_2_right.mp3"}, {"callType": "regular 3", "leftFile": "audio/left/Gina_regular_3_left.mp3", "rightFile": "audio/right/Gina_regular_3_right.mp3"}, {"callType": "regular 4", "leftFile": "audio/left/Gina_regular_4_left.mp3", "rightFile": "audio/right/Gina_regular_4_right.mp3"}, {"callType": "regular 5", "leftFile": "audio/left/Gina_regular_5_left.mp3", "rightFile": "audio/right/Gina_regular_5_right.mp3"}, {"callType": "regular 6", "leftFile": "audio/left/Gina_regular_6_left.mp3", "rightFile": "audio/right/Gina_regular_6_right.mp3"}, {"callType": "scoop 1", "leftFile": "audio/left/Gina_scoop_1_left.mp3", "rightFile": "audio/right/Gina_scoop_1_right.mp3"}, {"callType": "scoop 2", "leftFile": "audio/left/Gina_scoop_2_left.mp3", "rightFile": "audio/right/Gina_scoop_2_right.mp3"}, {"callType": "scoop 3", "leftFile": "audio/left/Gina_scoop_3_left.mp3", "rightFile": "audio/right/Gina_scoop_3_right.mp3"}, {"callType": "scoop 4", "leftFile": "audio/left/Gina_scoop_4_left.mp3", "rightFile": "audio/right/Gina_scoop_4_right.mp3"}, {"callType": "scoop 5", "leftFile": "audio/left/Gina_scoop_5_left.mp3", "rightFile": "audio/right/Gina_scoop_5_right.mp3"}, {"callType": "scoop 6", "leftFile": "audio/left/Gina_scoop_6_left.mp3", "rightFile": "audio/right/Gina_scoop_6_right.mp3"}, {"callType": "short 1", "leftFile": "audio/left/Gina_short_1_left.mp3", "rightFile": "audio/right/Gina_short_1_right.mp3"}, {"callType": "short 2", "leftFile": "audio/left/Gina_short_2_left.mp3", "rightFile": "audio/right/Gina_short_2_right.mp3"}, {"callType": "short 3", "leftFile": "audio/left/Gina_short_3_left.mp3", "rightFile": "audio/right/Gina_short_3_right.mp3"}, {"callType": "short 4", "leftFile": "audio/left/Gina_short_4_left.mp3", "rightFile": "audio/right/Gina_short_4_right.mp3"}, {"callType": "short 5", "leftFile": "audio/left/Gina_short_5_left.mp3", "rightFile": "audio/right/Gina_short_5_right.mp3"}, {"callType": "short 6", "leftFile": "audio/left/Gina_short_6_left.mp3", "rightFile": "audio/right/Gina_short_6_right.mp3"}, {"callType": "short fly 2", "leftFile": "audio/left/Gina_short_fly_2_left.mp3", "rightFile": "audio/right/Gina_short_fly_2_right.mp3"}, {"callType": "short fly 3", "leftFile": "audio/left/Gina_short_fly_3_left.mp3", "rightFile": "audio/right/Gina_short_fly_3_right.mp3"}, {"callType": "short fly 4", "leftFile": "audio/left/Gina_short_fly_4_left.mp3", "rightFile": "audio/right/Gina_short_fly_4_right.mp3"}, {"callType": "short fly 5", "leftFile": "audio/left/Gina_short_fly_5_left.mp3", "rightFile": "audio/right/Gina_short_fly_5_right.mp3"}, {"callType": "short fly 6", "leftFile": "audio/left/Gina_short_fly_6_left.mp3", "rightFile": "audio/right/Gina_short_fly_6_right.mp3"}]};
-const pitcherFile = "audio/pitchers/Hunter_Set_Ready_Pitch_center.mp3";
+const defaultPitcherFile = "audio/pitchers/Philadelphia Pitcher - Tim Hibner.mp3";
 const ballSoundFile = "audio/sounds/Ball1.m4a";
 let currentAudio = null;
 const sequenceAudio = new Audio();
@@ -95,7 +97,6 @@ let sequenceToken = 0;
 const statusEl = document.getElementById("status");
 const lastCallEl = document.getElementById("lastCall");
 const srAnnouncementEl = document.getElementById("srAnnouncement");
-const unlockButton = document.getElementById("unlockButton");
 
 function setStatus(message) {
     statusEl.textContent = message;
@@ -148,26 +149,36 @@ function stopAll() {
     setStatus("Practice stopped.");
 }
 
-async function unlockAudio() {
-    unlockButton.setAttribute("aria-pressed", "true");
-    unlockButton.textContent = "Audio Enabled";
-    setStatus("Audio enabled. Preparing audio for mobile playback.");
-
+async function unlockAudioIfNeeded() {
     try {
-        sequenceAudio.src = pitcherFile;
         sequenceAudio.muted = true;
+        sequenceAudio.src = getPitcherFile();
         sequenceAudio.load();
         await sequenceAudio.play();
         sequenceAudio.pause();
         sequenceAudio.currentTime = 0;
         sequenceAudio.muted = false;
-        setStatus("Audio enabled. Test the center beep, then the pitcher cadence.");
-        announceAfterSequence("Audio enabled.");
+        return true;
     } catch (error) {
         sequenceAudio.muted = false;
-        setStatus("Audio enabled, but the browser may still require a direct button press before continuous practice works. Test the pitcher cadence first.");
-        announceAfterSequence("Audio enabled. Test the pitcher cadence before continuous practice.");
+        return false;
     }
+}
+
+function getPitcherFile() {
+    const select = document.getElementById("pitcherSelect");
+    return select ? select.value : defaultPitcherFile;
+}
+
+function getPitcherLabel() {
+    const select = document.getElementById("pitcherSelect");
+    if (!select) { return "pitcher cadence"; }
+    return select.options[select.selectedIndex].text;
+}
+
+function displayLastCall(call, prefix) {
+    const lead = prefix || "Last call";
+    lastCallEl.textContent = lead + ": " + call.caller + " on the " + call.side + " side, " + call.callType + ".";
 }
 
 function playCenterBeep() {
@@ -214,7 +225,7 @@ function playAudioFile(src, label, quiet) {
                 setStatus("Playing " + label + ".");
             }
         }).catch((error) => {
-            setStatus("Chrome or mobile browser blocked audio, or could not play " + label + ". Press Enable Audio, then test the pitcher cadence. File: " + src);
+            setStatus("Chrome or mobile browser blocked audio, or could not play " + label + ". Press the same play or test button again. File: " + src);
             finish(false);
         });
     });
@@ -250,7 +261,7 @@ function chooseCall() {
 async function playSequence(call, token) {
     const includeBall = document.getElementById("includeBallSound").checked;
 
-    let ok = await playAudioFile(pitcherFile, "Hunter pitcher cadence", true);
+    let ok = await playAudioFile(getPitcherFile(), getPitcherLabel(), true);
     if (!ok || token !== sequenceToken) { return false; }
 
     if (includeBall) {
@@ -274,8 +285,7 @@ async function runOne(continueAfter) {
     clearTimers();
     stopCurrentAudio();
     const call = chooseCall();
-    lastCall = call;
-    lastCallEl.textContent = "Last call: " + call.caller + " on the " + call.side + " side, " + call.callType + ".";
+    setStatus("Practice sequence started. Result will appear after the call is heard.");
     const completed = await playSequence(call, token);
     if (token !== sequenceToken) { return; }
     if (!completed) {
@@ -285,6 +295,8 @@ async function runOne(continueAfter) {
         announceAfterSequence(failed);
         return;
     }
+    lastCall = call;
+    displayLastCall(call);
     const summary = "Sequence complete. Last call was " + call.caller + " on the " + call.side + " side, " + call.callType + ".";
     setStatus(summary);
     announceAfterSequence(summary);
@@ -293,15 +305,15 @@ async function runOne(continueAfter) {
     }
 }
 
-document.getElementById("unlockButton").addEventListener("click", unlockAudio);
-document.getElementById("playOneButton").addEventListener("click", () => { isContinuous = false; runOne(false); });
-document.getElementById("continuousButton").addEventListener("click", () => { isContinuous = true; setStatus("Continuous practice started."); runOne(true); });
+document.getElementById("playOneButton").addEventListener("click", async () => { await unlockAudioIfNeeded(); isContinuous = false; runOne(false); });
+document.getElementById("continuousButton").addEventListener("click", async () => { await unlockAudioIfNeeded(); isContinuous = true; setStatus("Continuous practice started."); runOne(true); });
 document.getElementById("stopButton").addEventListener("click", stopAll);
 document.getElementById("repeatButton").addEventListener("click", async () => {
     if (!lastCall) { setStatus("There is no last call to repeat yet."); announceAfterSequence("There is no last call to repeat yet."); return; }
     isContinuous = false;
     sequenceToken += 1;
     const token = sequenceToken;
+    setStatus("Repeating last call. Result remains unchanged until the repeat is heard.");
     const completed = await playSequence(lastCall, token);
     if (token !== sequenceToken) { return; }
     if (!completed) {
@@ -310,26 +322,37 @@ document.getElementById("repeatButton").addEventListener("click", async () => {
         announceAfterSequence(failed);
         return;
     }
+    displayLastCall(lastCall);
     const summary = "Repeat complete. Last call was " + lastCall.caller + " on the " + lastCall.side + " side, " + lastCall.callType + ".";
     setStatus(summary);
     announceAfterSequence(summary);
 });
 document.getElementById("testCenterBeepButton").addEventListener("click", playCenterBeep);
-document.getElementById("testPitcherButton").addEventListener("click", () => playAudioFile(pitcherFile, "Hunter pitcher cadence"));
-document.getElementById("testBallButton").addEventListener("click", () => playAudioFile(ballSoundFile, "trial ball sound"));
-document.getElementById("testLeftButton").addEventListener("click", () => {
+document.getElementById("testPitcherButton").addEventListener("click", async () => { await unlockAudioIfNeeded(); playAudioFile(getPitcherFile(), getPitcherLabel()); });
+document.getElementById("testBallButton").addEventListener("click", async () => { await unlockAudioIfNeeded(); playAudioFile(ballSoundFile, "trial ball sound"); });
+document.getElementById("testLeftButton").addEventListener("click", async () => {
+    await unlockAudioIfNeeded();
     const caller = document.getElementById("leftCaller").value;
     const call = getCallsForCaller(caller, "left")[0];
-    lastCall = call;
-    lastCallEl.textContent = "Last call: " + call.caller + " on the left side, " + call.callType + ".";
-    playAudioFile(call.file, "left caller " + caller);
+    setStatus("Playing left caller test. Result will appear after the call is heard.");
+    const completed = await playAudioFile(call.file, "left caller " + caller, true);
+    if (completed) {
+        lastCall = call;
+        displayLastCall(call);
+        setStatus("Left caller test complete.");
+    }
 });
-document.getElementById("testRightButton").addEventListener("click", () => {
+document.getElementById("testRightButton").addEventListener("click", async () => {
+    await unlockAudioIfNeeded();
     const caller = document.getElementById("rightCaller").value;
     const call = getCallsForCaller(caller, "right")[0];
-    lastCall = call;
-    lastCallEl.textContent = "Last call: " + call.caller + " on the right side, " + call.callType + ".";
-    playAudioFile(call.file, "right caller " + caller);
+    setStatus("Playing right caller test. Result will appear after the call is heard.");
+    const completed = await playAudioFile(call.file, "right caller " + caller, true);
+    if (completed) {
+        lastCall = call;
+        displayLastCall(call);
+        setStatus("Right caller test complete.");
+    }
 });
 </script>
 </body>
