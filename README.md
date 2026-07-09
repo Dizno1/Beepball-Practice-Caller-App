@@ -11,3 +11,7 @@ Current build notes:
 ## Testing
 
 Extract the ZIP first. Open `index.html` in Chrome. Do not run the file from inside the ZIP preview.
+
+## Open Door Design visual standard applied
+
+This project uses the Open Door Design AAA-oriented visual standard. The interface avoids blue/green pairings, uses green as the single brand accent, uses dark neutral text for structure, and uses a high-visibility gold focus indicator. Returned project archives intentionally exclude the `.git` directory.

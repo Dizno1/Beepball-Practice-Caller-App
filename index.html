@@ -5,17 +5,338 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Beepball Practice Caller App - Open Door Design</title>
 <style>
-    body { font-family: Arial, sans-serif; line-height: 1.5; margin: 0; padding: 1rem; background: #f7f7f7; color: #111; }
-    main { max-width: 48rem; margin: 0 auto; }
-    section { background: #fff; border: 1px solid #ccc; border-radius: 1rem; padding: 1rem; margin: 1rem 0; }
-    h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
-    h2 { font-size: 1.25rem; margin-top: 0; }
-    button, select { font-size: 1.1rem; padding: 0.9rem; margin: 0.35rem 0; width: 100%; min-height: 3rem; }
-    label { display: block; margin-top: 0.75rem; font-weight: bold; }
-    .choice-label { font-weight: normal; border: 1px solid #bbb; border-radius: 0.75rem; padding: 0.75rem; background: #fafafa; }
-    .status-box { border: 1px solid #bbb; border-radius: 0.75rem; background: #fafafa; padding: 0.75rem; min-height: 2rem; }
-    .note { font-size: 0.95rem; }
-    .sr-only { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+/* Open Door Design shared visual standard
+   AAA-oriented contrast, green as the single brand accent, no blue/green interface pairing. */
+:root {
+    --odd-bg: #F7FBF8;
+    --odd-panel: #FFFFFF;
+    --odd-panel-alt: #EAF3ED;
+    --odd-text: #111814;
+    --odd-heading: #0B1F16;
+    --odd-muted: #2F473A;
+    --odd-border: #2E4A3C;
+    --odd-border-soft: #9DB8A8;
+    --odd-green: #0B5D3B;
+    --odd-green-dark: #063D26;
+    --odd-green-deep: #042C1B;
+    --odd-focus: #F5B700;
+    --odd-focus-dark: #6B4F00;
+    --odd-shadow: 0 0.25rem 0.75rem rgba(4, 44, 27, 0.14);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--odd-bg);
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: var(--odd-text);
+    background: var(--odd-bg);
+}
+
+body > header,
+body > main,
+body > footer,
+main {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+header {
+    border-bottom: 0.25rem solid var(--odd-green);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--odd-heading);
+    line-height: 1.25;
+}
+
+h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin-bottom: 0.35rem;
+}
+
+h2 {
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+p,
+li,
+dd,
+dt {
+    max-width: 75ch;
+}
+
+a {
+    color: var(--odd-green-dark);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 0.12em;
+}
+
+a:visited {
+    color: var(--odd-green-deep);
+}
+
+a:hover {
+    color: var(--odd-green);
+}
+
+a:focus,
+a:focus-visible,
+button:focus,
+button:focus-visible,
+select:focus,
+select:focus-visible,
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible,
+summary:focus,
+summary:focus-visible,
+[tabindex]:focus,
+[tabindex]:focus-visible {
+    outline: 0.25rem solid var(--odd-focus);
+    outline-offset: 0.2rem;
+    box-shadow: 0 0 0 0.45rem rgba(245, 183, 0, 0.25);
+}
+
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -10rem;
+    background: var(--odd-green-deep);
+    color: #FFFFFF;
+    padding: 0.75rem 1rem;
+    border: 0.2rem solid var(--odd-focus);
+    border-radius: 0.35rem;
+    z-index: 1000;
+}
+
+.skip-link:visited {
+    color: #FFFFFF;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    top: 1rem;
+}
+
+.panel,
+section,
+fieldset,
+.review-content,
+.challenge-dialog,
+.status-box {
+    background: var(--odd-panel);
+    border: 0.12rem solid var(--odd-border-soft);
+    border-radius: 0.8rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    box-shadow: var(--odd-shadow);
+}
+
+.panel:nth-of-type(even),
+.review-content {
+    background: var(--odd-panel-alt);
+}
+
+fieldset {
+    border-color: var(--odd-border);
+}
+
+legend,
+label,
+summary,
+dt,
+.status {
+    color: var(--odd-heading);
+    font-weight: 700;
+}
+
+summary {
+    cursor: pointer;
+    padding: 0.45rem 0;
+}
+
+.meta,
+.note {
+    color: var(--odd-muted);
+}
+
+select,
+input,
+textarea,
+button {
+    font: inherit;
+}
+
+select,
+input,
+textarea {
+    color: var(--odd-text);
+    background: var(--odd-panel);
+    border: 0.12rem solid var(--odd-border);
+    border-radius: 0.4rem;
+    padding: 0.6rem 0.75rem;
+}
+
+button,
+.button,
+[role="button"] {
+    color: #FFFFFF;
+    background: var(--odd-green);
+    border: 0.15rem solid var(--odd-green-deep);
+    border-radius: 0.45rem;
+    padding: 0.65rem 0.9rem;
+    margin: 0.25rem 0;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+button:visited,
+.button:visited {
+    color: #FFFFFF;
+}
+
+button:hover,
+.button:hover,
+[role="button"]:hover {
+    color: #FFFFFF;
+    background: var(--odd-green-dark);
+}
+
+button[aria-pressed="true"],
+button.active,
+.button.active {
+    color: #FFFFFF;
+    background: var(--odd-green-deep);
+    border-color: var(--odd-focus-dark);
+}
+
+button:disabled,
+[disabled],
+[aria-disabled="true"] {
+    color: var(--odd-text);
+    background: #D8E2DC;
+    border-color: var(--odd-muted);
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.choice-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.choice-list li {
+    margin: 0.75rem 0;
+}
+
+.choice-button {
+    width: 100%;
+    text-align: left;
+}
+
+.choice-label {
+    display: block;
+    color: var(--odd-text);
+    background: var(--odd-panel-alt);
+    border: 0.12rem solid var(--odd-border-soft);
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+}
+
+.status {
+    min-height: 1.5rem;
+}
+
+.keyboard-help kbd,
+kbd {
+    color: var(--odd-heading);
+    background: var(--odd-panel-alt);
+    border: 0.12rem solid var(--odd-border);
+    border-radius: 0.25rem;
+    padding: 0.1rem 0.35rem;
+    font-weight: 700;
+}
+
+.review-challenge-tools {
+    border-top: 0.12rem solid var(--odd-border-soft);
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+.review-challenge-tools label {
+    display: block;
+    margin-top: 0.75rem;
+}
+
+.review-challenge-tools input,
+.review-challenge-tools textarea,
+.challenge-dialog input,
+.challenge-dialog textarea {
+    display: block;
+    width: 100%;
+    max-width: 60rem;
+    margin-top: 0.25rem;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+main {
+    max-width: 48rem;
+}
+
+button,
+select {
+    width: 100%;
+    min-height: 3rem;
+}
+
+label {
+    display: block;
+    margin-top: 0.75rem;
+}
+
+section {
+    margin: 1rem 0;
+}
+
+.status-box {
+    min-height: 2rem;
+}
+
 </style>
 </head>
 <body>
