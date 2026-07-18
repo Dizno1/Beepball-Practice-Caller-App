@@ -126,6 +126,11 @@ summary:focus-visible,
     border: 0.2rem solid var(--odd-focus);
     border-radius: 0.35rem;
     z-index: 1000;
+    display: inline-block;
+    width: max-content;
+    max-width: calc(100vw - 2rem);
+    white-space: normal;
+    overflow-wrap: normal;
 }
 
 .skip-link:visited {
@@ -340,7 +345,8 @@ section {
 </style>
 </head>
 <body>
-<main>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" tabindex="-1">
     <h1>Beepball Practice Caller App</h1>
     <p>Field test build using pre-panned audio files, selectable pitcher cadence, and an optional trial ball sound. Screen reader announcements and visible last-call results are delayed until after each practice sequence so the audio call is not covered up.</p>
 

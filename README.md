@@ -15,3 +15,11 @@ Extract the ZIP first. Open `index.html` in Chrome. Do not run the file from ins
 ## Open Door Design visual standard applied
 
 This project uses the Open Door Design AAA-oriented visual standard. The interface avoids blue/green pairings, uses green as the single brand accent, uses dark neutral text for structure, and uses a high-visibility gold focus indicator. Returned project archives intentionally exclude the `.git` directory.
+
+
+## Visual remediation
+
+- Added a keyboard-accessible Skip to main content link.
+- Ensured the skip link sizes to its text instead of using a fixed narrow width.
+- Limited the skip link to the viewport width while allowing readable wrapping on very small screens.
+- Preserved the existing Open Door Design green button styling and light green page background.
