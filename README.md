@@ -1,8 +1,8 @@
-# Beepball Practice Caller App
+# Beepball Practice Caller
 
 Current build notes:
 
-- The page title and main heading use Beepball Practice Caller App.
+- The page title and main heading use Beepball Practice Caller.
 - Audio starts from the normal practice and test buttons.
 - No manual audio player is shown on the page.
 - Pitcher cadence is selectable.
