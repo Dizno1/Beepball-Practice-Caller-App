@@ -23,3 +23,29 @@ This project uses the Open Door Design AAA-oriented visual standard. The interfa
 - Ensured the skip link sizes to its text instead of using a fixed narrow width.
 - Limited the skip link to the viewport width while allowing readable wrapping on very small screens.
 - Preserved the existing Open Door Design green button styling and light green page background.
+
+## Dynamic audio library
+
+The application no longer hardcodes callers, pitchers, or trial ball sounds in `index.html`.
+
+The interface is populated from `audioLibrary.js`, which is generated from these folders:
+
+- `audio/left`
+- `audio/right`
+- `audio/pitchers`
+- `audio/sounds`
+
+After adding, renaming, or removing audio files, run:
+
+`py refreshAudioLibrary.py`
+
+The script regenerates both `audioLibrary.js` for the browser and `audioLibrary.json` for inspection or future tooling. Commit and push the regenerated files with the audio changes.
+
+Caller recordings must use matching left and right filenames. For example:
+
+- `Alex_hard_1_left.mp3`
+- `Alex_hard_1_right.mp3`
+
+The first filename section becomes the caller name, and the remaining filename becomes the call description. Pitcher and sound labels are generated from their filenames.
+
+The current generated library contains two callers, sixty-six paired calls, five pitchers, and one trial ball sound.
