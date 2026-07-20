@@ -333,6 +333,223 @@
         "leftFile": "audio/left/Nick_6_short_left.mp3",
         "rightFile": "audio/right/Nick_6_short_right.mp3"
       }
+    ],
+    "Pete 1 foul line": [
+      {
+        "callType": "Pete 1 foul line",
+        "leftFile": "audio/left/Pete 1 foul line.m4a",
+        "rightFile": "audio/right/Pete 1 foul line.m4a"
+      }
+    ],
+    "Pete 1 hard": [
+      {
+        "callType": "Pete 1 hard",
+        "leftFile": "audio/left/Pete 1 hard.m4a",
+        "rightFile": "audio/right/Pete 1 hard.m4a"
+      }
+    ],
+    "Pete 1 short": [
+      {
+        "callType": "Pete 1 short",
+        "leftFile": "audio/left/Pete 1 short.m4a",
+        "rightFile": "audio/right/Pete 1 short.m4a"
+      }
+    ],
+    "Pete 1 spinner": [
+      {
+        "callType": "Pete 1 spinner",
+        "leftFile": "audio/left/Pete 1 spinner.m4a",
+        "rightFile": "audio/right/Pete 1 spinner.m4a"
+      }
+    ],
+    "Pete 1-airball": [
+      {
+        "callType": "Pete 1 airball",
+        "leftFile": "audio/left/Pete 1-airball.m4a",
+        "rightFile": "audio/right/Pete 1-airball.m4a"
+      }
+    ],
+    "Pete 1standard": [
+      {
+        "callType": "Pete 1standard",
+        "leftFile": "audio/left/Pete 1standard.m4a",
+        "rightFile": "audio/right/Pete 1standard.m4a"
+      }
+    ],
+    "Pete 2 airball": [
+      {
+        "callType": "Pete 2 airball",
+        "leftFile": "audio/left/Pete 2 airball.m4a",
+        "rightFile": "audio/right/Pete 2 airball.m4a"
+      }
+    ],
+    "Pete 2 hard": [
+      {
+        "callType": "Pete 2 hard",
+        "leftFile": "audio/left/Pete 2 hard.m4a",
+        "rightFile": "audio/right/Pete 2 hard.m4a"
+      }
+    ],
+    "Pete 2 standard": [
+      {
+        "callType": "Pete 2 standard",
+        "leftFile": "audio/left/Pete 2 standard.m4a",
+        "rightFile": "audio/right/Pete 2 standard.m4a"
+      }
+    ],
+    "Pete 2short": [
+      {
+        "callType": "Pete 2short",
+        "leftFile": "audio/left/Pete 2short.m4a",
+        "rightFile": "audio/right/Pete 2short.m4a"
+      }
+    ],
+    "Pete 2spinner": [
+      {
+        "callType": "Pete 2spinner",
+        "leftFile": "audio/left/Pete 2spinner.m4a",
+        "rightFile": "audio/right/Pete 2spinner.m4a"
+      }
+    ],
+    "Pete 3 air": [
+      {
+        "callType": "Pete 3 air",
+        "leftFile": "audio/left/Pete 3 air.m4a",
+        "rightFile": "audio/right/Pete 3 air.m4a"
+      }
+    ],
+    "Pete 3 hard": [
+      {
+        "callType": "Pete 3 hard",
+        "leftFile": "audio/left/Pete 3 hard.m4a",
+        "rightFile": "audio/right/Pete 3 hard.m4a"
+      }
+    ],
+    "Pete 3 short": [
+      {
+        "callType": "Pete 3 short",
+        "leftFile": "audio/left/Pete 3 short.m4a",
+        "rightFile": "audio/right/Pete 3 short.m4a"
+      }
+    ],
+    "Pete 3 spinner": [
+      {
+        "callType": "Pete 3 spinner",
+        "leftFile": "audio/left/Pete 3 spinner.m4a",
+        "rightFile": "audio/right/Pete 3 spinner.m4a"
+      }
+    ],
+    "Pete 3standard": [
+      {
+        "callType": "Pete 3standard",
+        "leftFile": "audio/left/Pete 3standard.m4a",
+        "rightFile": "audio/right/Pete 3standard.m4a"
+      }
+    ],
+    "Pete 4 air": [
+      {
+        "callType": "Pete 4 air",
+        "leftFile": "audio/left/Pete 4 air.m4a",
+        "rightFile": "audio/right/Pete 4 air.m4a"
+      }
+    ],
+    "Pete 4 hard": [
+      {
+        "callType": "Pete 4 hard",
+        "leftFile": "audio/left/Pete 4 hard.m4a",
+        "rightFile": "audio/right/Pete 4 hard.m4a"
+      }
+    ],
+    "Pete 4 short": [
+      {
+        "callType": "Pete 4 short",
+        "leftFile": "audio/left/Pete 4 short.m4a",
+        "rightFile": "audio/right/Pete 4 short.m4a"
+      }
+    ],
+    "Pete 4 spinner": [
+      {
+        "callType": "Pete 4 spinner",
+        "leftFile": "audio/left/Pete 4 spinner.m4a",
+        "rightFile": "audio/right/Pete 4 spinner.m4a"
+      }
+    ],
+    "Pete 4 standard": [
+      {
+        "callType": "Pete 4 standard",
+        "leftFile": "audio/left/Pete 4 standard.m4a",
+        "rightFile": "audio/right/Pete 4 standard.m4a"
+      }
+    ],
+    "Pete 5 air": [
+      {
+        "callType": "Pete 5 air",
+        "leftFile": "audio/left/Pete 5 air.m4a",
+        "rightFile": "audio/right/Pete 5 air.m4a"
+      }
+    ],
+    "Pete 5 hard": [
+      {
+        "callType": "Pete 5 hard",
+        "leftFile": "audio/left/Pete 5 hard.m4a",
+        "rightFile": "audio/right/Pete 5 hard.m4a"
+      }
+    ],
+    "Pete 5 short": [
+      {
+        "callType": "Pete 5 short",
+        "leftFile": "audio/left/Pete 5 short.m4a",
+        "rightFile": "audio/right/Pete 5 short.m4a"
+      }
+    ],
+    "Pete 5 spinner": [
+      {
+        "callType": "Pete 5 spinner",
+        "leftFile": "audio/left/Pete 5 spinner.m4a",
+        "rightFile": "audio/right/Pete 5 spinner.m4a"
+      }
+    ],
+    "Pete 5 standard": [
+      {
+        "callType": "Pete 5 standard",
+        "leftFile": "audio/left/Pete 5 standard.m4a",
+        "rightFile": "audio/right/Pete 5 standard.m4a"
+      }
+    ],
+    "Pete 6 air": [
+      {
+        "callType": "Pete 6 air",
+        "leftFile": "audio/left/Pete 6 air.m4a",
+        "rightFile": "audio/right/Pete 6 air.m4a"
+      }
+    ],
+    "Pete 6 hard": [
+      {
+        "callType": "Pete 6 hard",
+        "leftFile": "audio/left/Pete 6 hard.m4a",
+        "rightFile": "audio/right/Pete 6 hard.m4a"
+      }
+    ],
+    "Pete 6 short": [
+      {
+        "callType": "Pete 6 short",
+        "leftFile": "audio/left/Pete 6 short.m4a",
+        "rightFile": "audio/right/Pete 6 short.m4a"
+      }
+    ],
+    "Pete 6 spinner": [
+      {
+        "callType": "Pete 6 spinner",
+        "leftFile": "audio/left/Pete 6 spinner.m4a",
+        "rightFile": "audio/right/Pete 6 spinner.m4a"
+      }
+    ],
+    "Pete 6 standard": [
+      {
+        "callType": "Pete 6 standard",
+        "leftFile": "audio/left/Pete 6 standard.m4a",
+        "rightFile": "audio/right/Pete 6 standard.m4a"
+      }
     ]
   },
   "pitchers": [
