@@ -5,7 +5,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parent
 AUDIO = ROOT / "audio"
-EXTS = {".mp3", ".m4a", ".wav", ".ogg"}
+EXTS = {".mp3", ".m4a", ".wav", ".ogg", ".mp4"}
 
 
 def audio_files(folder_name):

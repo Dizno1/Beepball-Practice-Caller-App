@@ -521,6 +521,10 @@ window.audioLibrary = {
     {
       "label": "Ball1",
       "file": "audio/sounds/Ball1.m4a"
+    },
+    {
+      "label": "Beeping Ball",
+      "file": "audio/sounds/Beeping Ball.mp4"
     }
   ]
 };
