@@ -9,3 +9,4 @@ Current build notes:
 
 Testing:
 Extract the ZIP first. Open index.html in Chrome. Do not run the file from inside the ZIP preview.
+Updated the callers, and added Peter July 20, 2026
