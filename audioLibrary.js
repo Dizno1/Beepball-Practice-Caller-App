@@ -489,6 +489,10 @@ window.audioLibrary = {
   },
   "pitchers": [
     {
+      "label": "Bombers Matt Gallante",
+      "file": "audio/pitchers/Bombers Matt Gallante.m4a"
+    },
+    {
       "label": "Jen Oppo Solid",
       "file": "audio/pitchers/JenOppoSolid.mp3"
     },
@@ -499,6 +503,10 @@ window.audioLibrary = {
     {
       "label": "Jen Up The Middle",
       "file": "audio/pitchers/JenUpTheMiddle.mp3"
+    },
+    {
+      "label": "New Jersey Steve Dinome",
+      "file": "audio/pitchers/New Jersey Steve Dinome.m4a"
     },
     {
       "label": "Oklahoma Pitcher Tim Hibner",
