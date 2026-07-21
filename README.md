@@ -49,3 +49,15 @@ Caller recordings must use matching left and right filenames. For example:
 The first filename section becomes the caller name, and the remaining filename becomes the call description. Pitcher and sound labels are generated from their filenames.
 
 The current generated library contains two callers, sixty-six paired calls, five pitchers, and one trial ball sound.
+
+## Caller filename formats
+
+The refresh tool groups recordings by the first word in the filename and uses the rest as the call description. Both underscore-based and space-based names are supported.
+
+Examples:
+
+- `Nick_1_fly_left.mp3` paired with `Nick_1_fly_right.mp3`
+- `Gina_fly_ball_1_left.mp3` paired with `Gina_fly_ball_1_right.mp3`
+- `Pete 1 hard.m4a` placed with the same filename in both `audio/left` and `audio/right`
+
+The `audio/left` and `audio/right` folders determine the side. A `_left` or `_right` filename ending is optional.
